@@ -49,5 +49,5 @@ public class Order {
     private Stock stock;
 
     @OneToOne(mappedBy = "orders", cascade = CascadeType.ALL)
-    private Transaction transaction;
+    private List<Transaction> transactions = new ArrayList<>();
 }
