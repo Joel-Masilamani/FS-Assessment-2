@@ -1,10 +1,9 @@
 package com.example.demo.entities;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.data.annotation.Id;
+import jakarta.persistence.Id;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -34,13 +33,13 @@ public class Stock {
     private String name;
 
     @Column(nullable = false)
-    private BigDecimal price;
+    private double price;
 
     @Column(nullable = false)
     private long amt;
 
     @OneToOne(mappedBy = "stock", cascade = CascadeType.ALL)
-    private List<Order> order = new ArrayList<>();
+    private List<StockOrder> orders = new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)

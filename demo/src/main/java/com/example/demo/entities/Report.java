@@ -2,10 +2,11 @@ package com.example.demo.entities;
 
 import java.util.Date;
 
-import org.springframework.data.annotation.Id;
+
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
+import jakarta.persistence.Id;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;

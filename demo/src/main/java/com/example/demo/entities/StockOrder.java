@@ -14,6 +14,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,7 +25,9 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-public class Order {
+@Table(name = "orders")
+public class StockOrder
+{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

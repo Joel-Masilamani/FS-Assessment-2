@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import org.springframework.data.annotation.Id;
+import jakarta.persistence.Id;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -41,7 +41,7 @@ public class Transaction {
 
     @OneToOne
     @JoinColumn(name = "order_id", nullable = false)
-    private Order orders;
+    private StockOrder orders;
 
     @ManyToOne
     private List<Report> reports = new ArrayList<>();

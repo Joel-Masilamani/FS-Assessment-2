@@ -26,7 +26,7 @@ public class User {
     private String email;
 
     @Column(unique = true)
-    private long phno;
+    private String phno;
 
     @Column(nullable = false)
     private String password;
@@ -35,7 +35,7 @@ public class User {
     private String role;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<Order> orders = new ArrayList<>();
+    private List<StockOrder> orders = new ArrayList<>();
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Stock> stock = new ArrayList<>();
