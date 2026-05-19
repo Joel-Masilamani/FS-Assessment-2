@@ -1,11 +1,23 @@
 package com.example.demo.entities;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.data.annotation.Id;
 
-import jakarta.persistence.*;
-import lombok.*;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @NoArgsConstructor
@@ -16,15 +28,23 @@ public class Stock {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    long id;
+    private long id;
 
     @Column(nullable = false)
-    String name;
+    private String name;
 
-    @Column(unique = true)
-    BigDecimal price;
+    @Column(nullable = false)
+    private BigDecimal price;
 
-    @Column(unique = true)
-    long amt;
+    @Column(nullable = false)
+    private long amt;
 
+    @OneToOne(mappedBy = "stock", cascade = CascadeType.ALL)
+    private List<Order> order = new ArrayList<>();
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+
+    
 }
