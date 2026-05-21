@@ -1,10 +1,7 @@
 package com.example.demo.entities;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
-
-
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Id;
 import jakarta.persistence.Entity;
@@ -12,7 +9,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -33,13 +29,9 @@ public class Report {
     private String description;
 
     @Column(nullable = false)
-    private Date reportDate;
+    private LocalDateTime reportDate;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
-
-    @OneToMany(mappedBy = "transaction", cascade = CascadeType.ALL)
-    @JoinColumn(name = "transaction_id", nullable = false)
-    private Transaction transaction;
 }

@@ -1,10 +1,5 @@
 package com.example.demo.entities;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.springframework.data.annotation.Id;
-
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -13,6 +8,7 @@ import lombok.*;
 @AllArgsConstructor
 @Getter
 @Setter
+@Table(name = "users")
 public class User {
 
     @Id
@@ -34,16 +30,7 @@ public class User {
     @Column(nullable = false)
     private String role;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<StockOrder> orders = new ArrayList<>();
-
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<Stock> stock = new ArrayList<>();
-
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<Report> reports = new ArrayList<>();
-
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<Transaction> transactions = new ArrayList<>();
+    @Column(nullable = false)
+    private double cashBalance;
     
 }

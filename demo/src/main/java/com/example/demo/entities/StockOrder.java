@@ -1,19 +1,14 @@
 package com.example.demo.entities;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.time.LocalDateTime;
 
-import org.springframework.data.annotation.Id;
-
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -34,23 +29,29 @@ public class StockOrder
     private long id;
 
     @Column(nullable = false)
-    private Date orderDate;
+    private LocalDateTime orderDate;
 
     @Column(nullable = false)
     private String action;
 
     @Column(nullable = false)
-    private long amt;;
+    private long quantity;
+
+    @Column(nullable = false)
+    private double pricePerShare;
+
+    @Column(nullable = false)
+    private double totalAmount;
+
+    @Column(nullable = false)
+    private String status;
 
     
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "stock_id", nullable = false)
     private Stock stock;
-
-    @OneToOne(mappedBy = "orders", cascade = CascadeType.ALL)
-    private List<Transaction> transactions = new ArrayList<>();
 }

@@ -1,8 +1,6 @@
 package com.example.demo.entities;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.time.LocalDateTime;
 
 import jakarta.persistence.Id;
 
@@ -12,7 +10,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,6 +21,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
+@Table(name = "stock_transactions")
 public class Transaction {
 
     @Id
@@ -30,20 +29,26 @@ public class Transaction {
     private long id;
 
     @Column(nullable = false)
-    private String name;
+    private String type;
 
     @Column(nullable = false)
-    private Date transactionDate; 
+    private LocalDateTime transactionDate;
+
+    @Column(nullable = false)
+    private long quantity;
+
+    @Column(nullable = false)
+    private double pricePerShare;
+
+    @Column(nullable = false)
+    private double totalAmount;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @OneToOne
-    @JoinColumn(name = "order_id", nullable = false)
-    private StockOrder orders;
-
     @ManyToOne
-    private List<Report> reports = new ArrayList<>();
+    @JoinColumn(name = "order_id", nullable = false)
+    private StockOrder order;
 
 }
